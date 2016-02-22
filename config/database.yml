@@ -1,7 +1,7 @@
 deveplopment:
   adapter: postgresql
   encoding: unicode
-  database: shoedash_development
+  database: shoedash_project_development
   pool: 5
   username: ubuntu
   password:
@@ -9,7 +9,7 @@ deveplopment:
 test:
   adapter: postgresql
   encoding: unicode
-  database: shoedash_test
+  database: shoedash_project_test
   pool: 5
   username: ubuntu
   password:
@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: shoedash_production
+  database: shoedash_project_production
   pool: 5
   username: ubuntu
   password:
