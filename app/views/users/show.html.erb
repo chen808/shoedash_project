@@ -1,0 +1,54 @@
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			width: 600px;
+			margin: 0 auto;
+		}
+		form{
+			margin-bottom: 10px;
+		}
+		a{
+			color: red;
+		}
+		h4{
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+
+<div id="container">
+	<!-- Show current logged in user -->
+	<h1>Hi, <%= @user.first_name %></h1>
+	<a href="/users/<%= @user.id %>/dashboard">Go to Dashboard</a> | <a href="/sessions" data-method='delete' >Log Out</a> 
+
+	<table style="width:90%" class="table table-striped">
+		<h3>All Products</h3>
+		<tr>
+			<td>Product</td>
+			<td>Seller</td>
+			<td>Date Posted</td>
+			<td>Amount</td>
+			<td>Action</td>
+		</tr>
+
+		<% @all_products.each do |x| %><!-- Loop through the incoming hash table -->
+			<tr>
+				<td><%= x.product %></td>
+				<td><%= x.seller %></td>
+				<td><%= x.created_at %></td>
+				<td>$ <%= x.amount %></td>
+				<td><a href="/user/<%= x.id %>/buy">Buy</a></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+

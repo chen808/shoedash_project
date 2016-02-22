@@ -1,0 +1,69 @@
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			width: 600px;
+			margin: 0 auto;
+		}
+		form{
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<div id="container">
+
+<!-- Sign In Form -->
+<h1>New Member Sign In</h1>
+<form action="/sessions" method="post" role="form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <p>
+    <label for="first-name">First Name</label>
+    <input type="text" class="form-control" name="first_name" placeholder="Enter First Name">
+  </p>
+
+  <p>
+    <label for="last_name">Last Name</label>
+    <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name">
+  </p>
+
+  <p>
+    <label for="email">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Enter email">
+  </p>
+
+  <p>
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Enter password">
+  </p>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<!-- Existing User Sign in -->
+<h1>Members Sign in</h1>
+<form action="/users" method="post" role="form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <p>
+    <label for="email">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Enter email">
+  </p>
+
+  <p>
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Enter password">
+  </p>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+
+</div>

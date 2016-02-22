@@ -1,0 +1,123 @@
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			width: 600px;
+			margin: 0 auto;
+		}
+		form{
+			margin-bottom: 10px;
+		}
+		a{
+			color: red;
+		}
+		h4{
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+
+<div id="container">
+	<!-- Show current logged in user -->
+	<h1>Hi, <%= @user.first_name %></h1>
+	<a href="/users/<%= @user.id %>">Go to all Products</a> | <a href="/sessions" data-method='delete' >Log Out</a> 
+
+
+	<!-- Create new product -->
+	<form action='/users/<%= @user.id %>/create' method='post'>
+		<h4>Sell Products</h4>
+		<input name='authenticity_token' value="<%=form_authenticity_token %>" type="hidden">
+
+		<label for='name'>Name: <input type='text' name='product' id='product'></label><br>
+		
+		<label for='amount'>Amount: <input type='text' name='amount' id='amount'></label>
+
+		<div>
+		<input type="submit" value="Submit Form" class="comment_button">
+		</div>
+	</form>
+	<br><br>
+
+
+	<!-- User's item that are not yet sold -->
+	<table class="table table-striped">
+	<h5>Your products that are not yet sold:</h5>
+
+		<tr>
+			<td>Product</td>
+			<td>Date Bought</td>
+			<td>Amount</td>
+			<td>Action</td>
+		</tr>
+
+		<% @user_products.each do |x| %><!-- Loop through the incoming hash table -->
+			<tr>
+				<td><%= x.product %></td>
+				<td><%= x.created_at %></td>
+				<td>$ <%= x.amount %></td>
+				<td><a href="/users/<%= x.id %>" data-method='delete'>Destroy</a></td>
+			</tr>
+		<% end %>
+	</table>
+	<br><br>
+
+
+	<!-- User Sales (Profits) -->
+	<table class="table table-striped">
+	<h5>Sales:</h5>
+
+		<tr>
+			<td>Product</td>
+			<td>Date Bought</td>
+			<td>Buyer</td>
+			<td>Amount</td>
+		</tr>
+		<%= session[:first_name]%>
+		<% @user_product_sold.each do |x| %><!-- Loop through the incoming hash table -->
+			<tr>
+				<td><%= x.product %></td>
+				<td><%= x.created_at %></td>
+				<td><%= x.buyer %></td>
+				<td>$ <%= x.amount %></td>
+			</tr>
+		<% end %>
+	</table>
+	<h3>You made: $ <%= @user_sales_total %></h3>
+	<br><br>
+
+
+	<!-- User Purchases -->
+	<table class="table table-striped">
+	<h5>Purchases:</h5>
+
+		<tr>
+			<td>Product</td>
+			<td>Date Bought</td>
+			<td>Seller</td>
+			<td>Amount</td>
+		</tr>
+
+		<% @all_products.each do |x| %><!-- Loop through the incoming hash table -->
+			<tr>
+				<td><%= x.product %></td>
+				<td><%= x.created_at %></td>
+				<td><%= x.seller %></td>
+				<td>$ <%= x.amount %></td>
+			</tr>
+		<% end %>
+	</table>
+	<h3>Total purchase: $ <%= @purchases_total %></h3>
+	<br><br>
+
+</div>
+
+
+

@@ -1,0 +1,23 @@
+deveplopment:
+  adapter: postgresql
+  encoding: unicode
+  database: shoedash_development
+  pool: 5
+  username: ubuntu
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: shoedash_test
+  pool: 5
+  username: ubuntu
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: shoedash_production
+  pool: 5
+  username: ubuntu
+  password:
